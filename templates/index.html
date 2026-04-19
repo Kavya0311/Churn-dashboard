@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Churn Dashboard</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0f2027;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+}
+
+.card {
+    background: #1c2b36;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+}
+
+button {
+    padding: 10px;
+    background: #00c6ff;
+    border: none;
+}
+
+img {
+    width: 40%;
+    margin: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🚀 AI Customer Churn Intelligence Dashboard</h1>
+
+<div class="card">
+
+<form action="/predict" method="post">
+<input name="tenure" placeholder="Tenure">
+<input name="MonthlyCharges" placeholder="Monthly Charges">
+<input name="TotalCharges" placeholder="Total Charges">
+<br>
+<button>Predict</button>
+</form>
+
+<h2>{{ prediction_text }}</h2>
+
+{% if confidence %}
+<p>🔍 Confidence: <b>{{ confidence }}%</b></p>
+{% endif %}
+
+{% if explanation_text %}
+<p>🧠 Reason: {{ explanation_text }}</p>
+{% endif %}
+
+{% if insight %}
+<p>📊 Insight: {{ insight }}</p>
+{% endif %}
+
+</div>
+
+<div class="card">
+<h2>📈 Dashboard</h2>
+
+<img src="{{ url_for('static', filename='churn.png') }}">
+<img src="{{ url_for('static', filename='charges.png') }}">
+<img src="{{ url_for('static', filename='tenure.png') }}">
+<img src="{{ url_for('static', filename='feature_importance.png') }}">
+
+</div>
+
+</body>
+</html>
